@@ -19,6 +19,12 @@ socket.on('message', function (message, remote) {
 	    	console.log(message);
 	    	console.log('Received address of remote client, starting MAVLink forwarding');
 	    	received_remote_address = true;
+	    	//Spam the other client with some packets to make the hole punch work.
+	    	socket.send(message,0,message.length, MAV_client.port, MAV_client.address);
+	    	socket.send(message,0,message.length, MAV_client.port, MAV_client.address);
+	    	socket.send(message,0,message.length, MAV_client.port, MAV_client.address);
+	    	socket.send(message,0,message.length, MAV_client.port, MAV_client.address);
+	    	socket.send(message,0,message.length, MAV_client.port, MAV_client.address);
 	    }catch(err) {}
 	    return;
 	}
