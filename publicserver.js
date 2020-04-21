@@ -5,7 +5,7 @@ var dgram = require('dgram');
 
 
 var socket = dgram.createSocket('udp4');
-socket.bind(33333, '192.168.1.66');
+socket.bind(33333, '0.0.0.0');
 
 var publicEndpointA = null;
 var publicEndpointB = null;
@@ -23,6 +23,8 @@ socket.on('message', function (message, remote) {
     		address: remote.address,
     		port: remote.port
     	}
+        var messageForB = new Buffer('A,'+publicEndpointA.address+','+publicEndpointA.port);
+        console.log(messageForB.toString());
     }
 
     if(message == 'B') {
@@ -46,7 +48,8 @@ function sendPublicDataToClients () {
 			console.log('> public endpoint of B sent to A');
 		});
 
-		var messageForB = new Buffer(JSON.stringify(publicEndpointA));
+		var messageForB = new Buffer('A,'+publicEndpointA.address+','+publicEndpointA.port);
+        console.log(messageForB);
 		socket.send(messageForB, 0, messageForB.length, publicEndpointB.port, publicEndpointB.address, function (err, nrOfBytesSent) {
 			if(err) return console.log(err);
 			console.log('> public endpoint of A sent to B');
