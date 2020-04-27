@@ -41,12 +41,21 @@ socket.on('message', function (message, remote) {
 
 function sendPublicDataToClients () {
 	if(publicEndpointA && publicEndpointB) {
-
-		var messageForA = new Buffer(JSON.stringify(publicEndpointB));
-		socket.send(messageForA, 0, messageForA.length, publicEndpointA.port, publicEndpointA.address, function (err, nrOfBytesSent) {
-			if(err) return console.log(err);
-			console.log('> public endpoint of B sent to A');
-		});
+        var messageForA = new Buffer(JSON.stringify(publicEndpointB));
+        socket.send(messageForA, 0, messageForA.length, publicEndpointA.port, publicEndpointA.address, function (err, nrOfBytesSent) {
+            if(err) return console.log(err);
+            console.log('> public endpoint of B sent to A');
+        });
+        messageForA = new Buffer(publicEndpointB.address);
+        socket.send(messageForA, 0, messageForA.length, publicEndpointA.port, publicEndpointA.address, function (err, nrOfBytesSent) {
+            if(err) return console.log(err);
+            console.log('> public endpoint of B sent to A');
+        });
+        messageForA = new Buffer(publicEndpointB.port);
+        socket.send(messageForA, 0, messageForA.length, publicEndpointA.port, publicEndpointA.address, function (err, nrOfBytesSent) {
+            if(err) return console.log(err);
+            console.log('> public endpoint of B sent to A');
+        });
 
 		var messageForB = new Buffer('A,'+publicEndpointA.address+','+publicEndpointA.port);
         console.log(messageForB);
@@ -57,10 +66,3 @@ function sendPublicDataToClients () {
 
 	}
 }
-
-
-
-
-
-
-

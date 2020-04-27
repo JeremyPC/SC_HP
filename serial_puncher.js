@@ -3,7 +3,7 @@
 
 var dgram = require('dgram');
 var sp = require('serialport');
-var mavPort = new sp('COM4',{baudRate: 115200});
+var mavPort = new sp('COM6',{baudRate: 115200});
 
 var socket = dgram.createSocket('udp4');
 
