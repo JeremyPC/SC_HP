@@ -30,7 +30,7 @@ socket1.on('listening', function() {
 	);
 })
 
-//code for receiving from 1
+//code for receiving from 2
 var socket2 = dgram.createSocket({ type: "udp4", reuseAddr: true });
 socket2.bind(Rx_Port2);
 socket2.on('listening', function() {
@@ -41,7 +41,7 @@ socket2.on('listening', function() {
 		console.log(remote_addr2);
 		console.log(remote_port2);
 		console.log(message);
-		socket1.send(message,0,message.length,remote_port2,remote_addr2); // send from socket1 to remote1
+		socket1.send(message,0,message.length,remote_port1,remote_addr1); // send from socket1 to remote1
 	});
 	const address = socket2.address();
 	console.log(
