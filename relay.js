@@ -19,8 +19,8 @@ socket1.on('listening', function() {
 		remote_addr1 = info.address;
 		remote_port1 = info.port;
 		console.log('Heard from remote1');
-		console.log(remote_addr);
-		console.log(remote_port);
+		console.log(remote_addr1);
+		console.log(remote_port1);
 		console.log(message);
 		socket2.send(message,0,message.length,remote_port2,remote_addr2); // send from socket 2 to remote2
 	});
@@ -38,8 +38,8 @@ socket2.on('listening', function() {
 		remote_addr2 = info.address;
 		remote_port2 = info.port;
 		console.log('Heard from remote2');
-		console.log(remote_addr);
-		console.log(remote_port);
+		console.log(remote_addr2);
+		console.log(remote_port2);
 		console.log(message);
 		socket1.send(message,0,message.length,remote_port2,remote_addr2); // send from socket1 to remote1
 	});
