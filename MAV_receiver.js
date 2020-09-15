@@ -1,4 +1,4 @@
-// Hole punch and forward received packets to 14550 on the local machine (demo connection to mission planner)
+// Hole punch and forward received packets to 14550 on the local machine
 // based on http://www.bford.info/pub/net/p2pnat/index.html
 
 //networking libraries required
@@ -66,4 +66,4 @@ var atoi = function atoi(addr) {
 //get things started.
 sendMessageToS();
 
-play.scoutcraft.com.au
+//play.scoutcraft.com.au
